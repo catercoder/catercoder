@@ -1,0 +1,24 @@
+
+
+			 #canvas{
+            top:0;
+            left:0;
+            position:absolute;
+            z-index: -3;
+        }
+
+		.container{
+			background-color: rgba(218, 51, 190,0.2);
+			color:white;
+			display: flex;
+			
+			flex-direction: column;
+			align-items:center;
+			min-height:100vh;
+			box-shadow: inset 3px 3px 20px #E585e6,
+							inset -3px -3px 20px #E585e6;
+            
+			backdrop-filter: blur(1px);
+			position: relative;
+			z-index: 3;
+		}

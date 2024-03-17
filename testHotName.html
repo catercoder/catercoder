@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style>
+	html,
+	body{
+		padding:0;
+		margin:0;
+		box-sizing: border-box;
+		background-color:#203;
+		max-height: 100vh;
+		max-width: 100vw;
+		z-index: 0;
+	}
+	.wrapper{
+		background-color: fff#;
+		color: blue;
+		text-align: center;
+		padding:10px 10px;
+		margin:-2px auto;
+	}
+	.name{
+		padding: 15px 0;
+		text-align: center;
+		background-color:rgb(200,100,200);
+		color:black;
+		font-size:22px;
+	}
+
+	.hat{
+		text-align:center;
+		background: rgb(100,255,100);
+		font-size: 24px;
+		padding: 30px 10px;
+	}
+	.button{
+		display:flex;
+		flex-direction: row;
+		justify-content: space-around;
+	
+
+	}
+	.button1{}
+	.button2{}
+	.spice{
+		text-align:center;
+		background: rgb(100,255,200);
+		font-size: 24px;
+		padding: 30px 10px;
+		
+	}
+
+	.glow-on-hover {
+    width: 80px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -4px;
+    left:-4px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+
+.shadow{
+	width: 95vw;
+	margin: 0 auto 10px auto;
+	background: black;
+	color: white;
+	box-shadow: 4px 4px 6px 4px gray;
+	inset: 2px 2px 1px 1px white;
+	border: 1px solid red;
+	border-radius: 25px;
+}
+.color-text-hover:hover{
+	color:blue;
+	transform: scale(1.02);
+}
+@media (min-width: 500px){
+	.glow-on-hover{
+		width:240px;
+	}
+}
+
+</style>
+<body>
+	<div class="main">
+		<div class="wrapper shadow color-text-hover">
+		<h1>Roll-Rolls</h1>
+		</div>
+
+		<div class="name shadow color-text-hover">
+		Перетусуй сначало чушпан!
+		</div>
+
+		<div class="hat shadow color-text-hover">
+		???
+		</div>
+
+		<div class="spice shadow color-text-hover">
+		???
+		</div>
+
+	</div>
+
+<div class="button">
+	<div class="button1"><button class="glow-on-hover">назад</button></div>
+	<div class="buttonShuffle  "><button  class="glow-on-hover">перемешать</button></div>
+	<div class="button0"><button class="glow-on-hover">показать</button></div>
+	<div class="button2"><button class="glow-on-hover">далее</button></div>
+</div>
+
+
+</body>
+<script>
+	let arr = []; // array to SHUFFLE 
+
+//////////////////////////////////////////начало темпурной базы ///////////////////////////////
+
+
+	let arrayName = ["",'ЗапечФила С Угрем','ЗапФила С мидиями','Цыпочка','Вулкан','Тунец Хот','Зап Калифорния','Цезарь Запеченый', 'ЗапКалиф с Крев',
+	'Зап Креветка','Сяке Терияки','Майами','Гриль Тунец','Дакота',
+	'Черная Мамба',
+	'Катана','Малибу','Блэк Джэк',
+	'Запеченная Фила Лосось','Ронин',
+	'Фудзи','Банзай',
+	'Находка','Сегун',
+	'Сяке Хот','Креветка Спайси',
+	 'Киото','Спайси Краб','Блэк Стар',
+	 'Санрайз',
+	 'Окинава','Зап Фила с Краб',
+	 'Чикен Хот'];
+
+
+
+	let arraySpice = [" ", 'Унаги кунжут', ' Унаги кунжут' , 'Унаги',
+		'Спайси перед запек', 'унаги и кр массага', 'ничем', 'пармезан', 'Унаги',
+		'Манго Чили','Унаги','ничем','унаги','унаги',
+	'точка Спайси',
+	'ничем','Манго Чили','Манго Чили',
+	'Унаги','Манго Чили',
+	'Унаги','унаги',
+	'Унаги','Манго Чили и супер лук',
+	'ничем','ничем',
+	 'ничем','ничем','ничем',
+	 'Манго Чили',
+	 'унаги кунжут','свит Чили',
+	 'свит Чили'];	
+
+
+
+
+
+	let arrayHat = ['','Сырный','Сырный','Сырный','Сырный','Сырный','Сырный','Сырный','Сырный',
+	'Яки','Яки','Яки','Яки','Яки',
+	'Спайси',
+	'Лосось Спайси','Лосось Спайси','Лосось Спайси',
+	'Яки Лосось','Яки Лосось',
+	'Спайси Угорь','Спайси Угорь',
+	'Мидиевый','Спайси Креветка',
+	'Спайси Сырный','Спайси Сырный',
+	'Краб Спайси','Краб Спайси','Краб Спайси',
+	'Манго Чили после запек',
+	'Яки Краб','Яки Краб',
+	'Куринный Замес'];
+/////////////////////////////////////////////////////////конец темпурной базы///////////////////////
+
+////////////////////////////////////////////////////////начало холодной базы /////////////////////////
+
+	let arrayNameCool = [
+	 'РоллсРолл','Лотос','ЭбиЛайт',
+	'Аляска','Нагано','Самурай',
+	'ФилаДелюкс','ФилаСПерсиком','Нью-Йорк',
+	'РозовыйДракон','КреветкаВасаби','СякеДелюкс',
+	'Камикадзе','ТориКинг','ТориКунсей',
+	'ТомагоЛайт','Рио','Осака'];
+
+	let arrayHatCool = [
+	 'Сыр жар креветка','Манго точки','грязный майонез точки',
+	'Яки соус и Супер Лук','Спайси точки и Супер Лук','пополам унагиКунж',
+	'Сыр и красная икра','Икра лосося','Икра лосося',
+	'Манго и зел лук','Сыр жаренная креветка','Сыр и Супер лук',
+	'Манго чили','Сыр и жар курица','Сыр',
+	'Свит-чили точки','Спайси лосось','Спайси Краб',];
+
+	let arraySpiceCool = [
+	 'Манго и массага красная','Супер лук','ЭбиЛайт',
+	'Аляска','Нагано','и спайси точки с супЛуком',
+	'ФилаДелюкс','ФилаСПерсиком','Нью-Йорк',
+	'РозовыйДракон','Катаиффи,ВассабиСоус,массОранж','СякеДелюкс',
+	'Камикадзе','Свит-чили, Катаиффи, посыпать лук','Супер лук',
+	'ТомагоЛайт','ничем','ничем'];
+
+//////////////////////////////////////////////////////////конец холодной базы //////////////////////////
+
+
+	const name = document.querySelector('.name');
+	const hat = document.querySelector('.hat');
+	const spice = document.querySelector('.spice');
+
+
+	let count = 0;
+// button SHOW
+	const button0 = document.querySelector('.button0');
+	button0.addEventListener('click',function(){
+		
+		hat.textContent = arrayHat[arr[count]];
+		spice.textContent = arraySpice[arr[count]];
+
+	})
+
+
+	
+//button  Back
+	let button1 = document.querySelector('.button1');
+	button1.addEventListener('click',function(){
+		count--;
+		name.textContent = arrayName[arr[count]];
+		hat.textContent = "?";
+		spice.textContent ='???',
+		
+		console.log(count);
+		
+	})
+
+// button NEXT
+	let button2 = document.querySelector('.button2');
+	button2.addEventListener('click', function(){
+		count++
+		name.textContent = arrayName[arr[count]];
+		hat.textContent = "?";
+		spice.textContent = "???",
+		
+		console.log(count);
+		
+
+
+	})
+	console.log(count)
+
+
+	// SHUFFLE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+	
+
+	let buttonShuffle = document.querySelector('.buttonShuffle');
+	buttonShuffle.addEventListener('click',function(){
+
+	function createArr(){
+		for(i=0; i< arrayName.length-1;i++){
+			arr[i]=i;
+		}
+		console.log('arrCreate!')
+	}
+
+	// shuffle arr
+
+	function putToCache(elem,cache){
+		if(cache.indexOf(elem) != -1){
+			return;
+		}
+		var i = Math.floor(Math.random()*(cache.length + 1));
+		cache.splice(i ,0, elem);
+	}
+	function madness(){
+		var cache = [];
+		return function (a,b){
+			putToCache(a , cache);
+			putToCache(b, cache);
+			return cache.indexOf(b) - cache.indexOf(a);
+		}
+	}
+	function shuffle(arr){
+		var compare = madness();
+		return arr.sort(compare);
+	}
+
+		createArr();
+		shuffle(arr);
+		console.log(arr);
+	})
+
+
+</script>
+</html>
