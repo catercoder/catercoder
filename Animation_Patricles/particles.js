@@ -14,7 +14,7 @@
 		bgColor: 'rgba(17,17,19,1)',
 		particleColor:'rgba(255,40,40,1)',
 		particleRadius:5,		//радиус объектов
-		particleCount:100 ,// колличество объектов
+		particleCount:50 ,// колличество объектов
 		particleMaxVelocity: 0.8, //скорость
 		lineLength: 100,
 		particlesLife: 6
