@@ -12,7 +12,7 @@
 		margin:0;
 		box-sizing: border-box;
 		background-color:#203;
-		max-height: 100vh;
+		min-height: 100vh;
 		max-width: 100vw;
 		z-index: 0;
 	}
@@ -170,7 +170,7 @@
 //////////////////////////////////////////начало темпурной базы ///////////////////////////////
 
 
-	let arrayName = ["",'ЗапечФила С Угрем','ЗапФила С мидиями','Цыпочка','Вулкан','Тунец Хот','Зап Калифорния','Цезарь Запеченый', 'ЗапКалиф с Крев',
+	let arrayName = ['ЗапечФила С Угрем','ЗапФила С мидиями','Цыпочка','Вулкан','Тунец Хот','Зап Калифорния','Цезарь Запеченый', 'ЗапКалиф с Крев',
 	'Зап Креветка','Сяке Терияки','Майами','Гриль Тунец','Дакота',
 	'Черная Мамба',
 	'Катана','Малибу','Блэк Джэк',
@@ -185,7 +185,7 @@
 
 
 
-	let arraySpice = [" ", 'Унаги кунжут', ' Унаги кунжут' , 'Унаги',
+	let arraySpice = ['Унаги кунжут', ' Унаги кунжут' , 'Унаги',
 		'Спайси перед запек', 'унаги и кр массага', 'ничем', 'пармезан', 'Унаги',
 		'Манго Чили','Унаги','ничем','унаги','унаги',
 	'точка Спайси',
@@ -203,7 +203,7 @@
 
 
 
-	let arrayHat = ['','Сырный','Сырный','Сырный','Сырный','Сырный','Сырный','Сырный','Сырный',
+	let arrayHat = ['Сырный','Сырный','Сырный','Сырный','Сырный','Сырный','Сырный','Сырный',
 	'Яки','Яки','Яки','Яки','Яки',
 	'Спайси',
 	'Лосось Спайси','Лосось Спайси','Лосось Спайси',
@@ -251,7 +251,11 @@
 	const spice = document.querySelector('.spice');
 
 
-	let count = 0;
+	let count = 0;//счетчик для перебора в back and next
+	let flag;//флаг 1 очередь next , 0 очередь back
+	console.log(flag);
+	//if (count <0 ){count = arrayName.length -1};
+	//if (count >= arrayName.length){count = 0};
 // button SHOW
 	const button0 = document.querySelector('.button0');
 	button0.addEventListener('click',function(){
@@ -266,23 +270,41 @@
 //button  Back
 	let button1 = document.querySelector('.button1');
 	button1.addEventListener('click',function(){
-		count--;
+		//if (count < 0){ count = arrayName.length};
+		if(flag == undefined || flag == 1){
+			flag = 0;
+			count = count -2;
+		};
+			if (count <0 ){count = arrayName.length -1};
+			if (count >= arrayName.length){count = 0};
+
 		name.textContent = arrayName[arr[count]];
 		hat.textContent = "?";
 		spice.textContent ='???',
-		
 		console.log(count);
+		count--;
+
 		
 	})
 
 // button NEXT
 	let button2 = document.querySelector('.button2');
 	button2.addEventListener('click', function(){
-		count++
+		if(flag == undefined ){
+			flag = 1;
+		}
+		if(flag == 0){
+			flag = 1;
+			count = count +2;
+		}
+			if (count <0 ){count = arrayName.length -1};
+			if (count >= arrayName.length){count = 0};
+
 		name.textContent = arrayName[arr[count]];
 		hat.textContent = "?";
 		spice.textContent = "???",
-		
+		count++
+		//if (count >= arrayName.length){ count = 0};
 		console.log(count);
 		
 
@@ -297,9 +319,10 @@
 
 	let buttonShuffle = document.querySelector('.buttonShuffle');
 	buttonShuffle.addEventListener('click',function(){
+		count=0;
 
 	function createArr(){
-		for(i=0; i< arrayName.length-1;i++){
+		for(i=0; i< arrayName.length;i++){
 			arr[i]=i;
 		}
 		console.log('arrCreate!')
