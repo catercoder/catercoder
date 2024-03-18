@@ -253,6 +253,7 @@
 
 	let count = 0;//счетчик для перебора в back and next
 	let flag;//флаг 1 очередь next , 0 очередь back
+
 	console.log(flag);
 	//if (count <0 ){count = arrayName.length -1};
 	//if (count >= arrayName.length){count = 0};
@@ -262,6 +263,25 @@
 		
 		hat.textContent = arrayHat[arr[count]];
 		spice.textContent = arraySpice[arr[count]];
+		if (arr.length == 0){
+				if(flag == 1){
+				hat.textContent = arrayHat[count - 1];
+				spice.textContent = arraySpice[count - 1];
+				}else{
+				hat.textContent = arrayHat[count + 1];
+				spice.textContent = arraySpice[count + 1];
+
+				}
+			}else{
+				if(flag == 1){
+				hat.textContent = arrayHat[arr[count -1]];
+				spice.textContent = arraySpice[arr[count -1]];
+				}else{
+				hat.textContent = arrayHat[arr[count +1]];
+				spice.textContent = arraySpice[arr[count +1]];
+
+				}
+			}
 
 	})
 
@@ -280,7 +300,13 @@
 
 		name.textContent = arrayName[arr[count]];
 		hat.textContent = "?";
-		spice.textContent ='???',
+		spice.textContent ='???';
+		if (arr.length == 0){
+				name.textContent = arrayName[count];
+				hat.textContent = "?";
+				spice.textContent = "???";
+				
+			}
 		console.log(count);
 		count--;
 
@@ -299,13 +325,20 @@
 		}
 			if (count <0 ){count = arrayName.length -1};
 			if (count >= arrayName.length){count = 0};
-
+			
 		name.textContent = arrayName[arr[count]];
 		hat.textContent = "?";
-		spice.textContent = "???",
+		spice.textContent = "???";
+		if (arr.length == 0){
+				name.textContent = arrayName[count];
+				hat.textContent = "?";
+				spice.textContent = "???";
+				
+			}
+
 		count++
 		//if (count >= arrayName.length){ count = 0};
-		console.log(count);
+
 		
 
 
