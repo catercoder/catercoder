@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,45 +15,46 @@
 		min-height: 100vh;
 		max-width: 100vw;
 		z-index: 0;
+		overflow: hidden;
 	}
 	.wrapper{
-		background-color: fff#;
-		color: blue;
-		text-align: center;
-		padding:10px 10px;
-		margin:-2px auto;
-	}
-	.name{
-		padding: 15px 0;
-		text-align: center;
-		background-color:rgb(200,100,200);
-		color:black;
-		font-size:22px;
-	}
-
-	.hat{
-		text-align:center;
-		background: rgb(100,255,100);
-		font-size: 24px;
-		padding: 30px 10px;
-	}
-	.button{
 		display:flex;
+		flex-direction:column;
+		justify-content: center;
+		align-items: center;
+		gap:5px;
+		width:100%;
+		height:100%;
+	}
+	.main{
+		display:flex;
+		flex-direction:column;
+		gap:5px;
+		width:95%;
+		height:100%;
+	}
+	.blocks_main{
+		padding:5px;
+		text-align: center;
+		background: black;
+		color:white;
+		box-shadow: 2px 2px 5px 3px gray,
+			inset 0px 1px 2px  white;
+		border: 1px solid red;
+		border-radius: 25px;
+		font-size:20px;
+	}
+	.buttons_conteiner{
+		display:flex;
+		flex-direction: column;
+		gap:5px 5px;
+	}
+	.button_box{
+		display: flex;
 		flex-direction: row;
 		justify-content: space-around;
-	
-
+		gap:5px;
 	}
-	.button1{}
-	.button2{}
-	.spice{
-		text-align:center;
-		background: rgb(100,255,200);
-		font-size: 24px;
-		padding: 30px 10px;
-		
-	}
-
 	.glow-on-hover {
     width: 80px;
     height: 50px;
@@ -66,7 +67,6 @@
     z-index: 0;
     border-radius: 10px;
 }
-
 .glow-on-hover:before {
     content: '';
     background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
@@ -114,20 +114,6 @@
     100% { background-position: 0 0; }
 }
 
-.shadow{
-	width: 95vw;
-	margin: 0 auto 10px auto;
-	background: black;
-	color: white;
-	box-shadow: 4px 4px 6px 4px gray;
-	inset: 2px 2px 1px 1px white;
-	border: 1px solid red;
-	border-radius: 25px;
-}
-.color-text-hover:hover{
-	color:blue;
-	transform: scale(1.02);
-}
 @media (min-width: 500px){
 	.glow-on-hover{
 		width:240px;
@@ -136,31 +122,42 @@
 
 </style>
 <body>
-	<div class="main">
-		<div class="wrapper shadow color-text-hover">
-		<h1>Roll-Rolls</h1>
+	<div class="wrapper">
+		<div class="main">
+
+			<div class=" blocks_main " id="name">
+				Перетусуй сначало чушпан!
+			</div>
+
+			<div class=" blocks_main " id="hat">
+				???
+			</div>
+
+			<div class=" blocks_main " id="spice">
+				???
+			</div>
+			<div class="blocks_main box_img">
+				<img id="img" src='image/logotip/Screenshot_20240319-160147_ .jpg' alt="picture" style=	"width:200px; margin:0;">
+			</div>
 		</div>
 
-		<div class="name shadow color-text-hover">
-		Перетусуй сначало чушпан!
+		<div class="buttons_conteiner">
+			<div class="button_box">
+				<div id="button_back" class="button_back"><button class="glow-on-hover">назад</button></div>
+				<div id="button_next" class="button_next"><button class="glow-on-hover">далее</button></div>
+			</div>
+			<div class="button_box">
+				<div id="button_shuffle" class="buttonShuffle  "><button  class="glow-on-hover">перемешать</button></div>
+				<div id="button_show" class="button_show"><button class="glow-on-hover">показать</button></div>
+			</div>
+				<!--
+				<div id="button_back" class="button_back"><button class="glow-on-hover">назад</button></div>
+				<div id="button_shuffle" class="buttonShuffle  "><button  class="glow-on-hover">перемешать</button></div>
+				<div id="button_show" class="button_show"><button class="glow-on-hover">показать</button></div>
+				<div id="button_next" class="button_next"><button class="glow-on-hover">далее</button></div>
+			-->
 		</div>
-
-		<div class="hat shadow color-text-hover">
-		???
-		</div>
-
-		<div class="spice shadow color-text-hover">
-		???
-		</div>
-
 	</div>
-
-<div class="button">
-	<div class="button1"><button class="glow-on-hover">назад</button></div>
-	<div class="buttonShuffle  "><button  class="glow-on-hover">перемешать</button></div>
-	<div class="button0"><button class="glow-on-hover">показать</button></div>
-	<div class="button2"><button class="glow-on-hover">далее</button></div>
-</div>
 
 
 </body>
@@ -168,53 +165,42 @@
 	let arr = []; // array to SHUFFLE 
 
 //////////////////////////////////////////начало темпурной базы ///////////////////////////////
+	let arrayRollRazdacha = [
 
+	{name:'ЗапечФила С Угрем', hat : 'Сырный' , spice : 'Унаги кунжут' , image : 'image/Zapech_Fila_s_Ugrem.jpg'},
+	{name:'ЗапФила С мидиями', hat : 'Сырный' , spice : 'Унаги кунжут' , image : 'image/Zap_Fila_s_Midiymi.jpg'},
+	{name:'Цыпочка', hat : 'Сырный' , spice : 'Унаги' , image : 'image/Cipochka.jpg'},
+	{name:'Вулкан', hat : 'Сырный' , spice : 'Спайси перед запек' , image : 'image/Vulkan.jpg'},
+	{name:'Тунец Хот', hat : 'Сырный' , spice : 'унаги и кр массага' , image : 'image/Tunec_Hot.jpg'},
+	{name:'Зап Калифорния', hat : 'Сырный' , spice : 'ничем' , image : 'image/Zapechenay_kaliforniy.jpg'},
+	{name:'Цезарь Запеченый', hat : 'Сырный' , spice : 'посыпается пармезаном' , image : 'image/Cezar.jpg'},
+	{name:'ЗапКалиф с Крев', hat : 'Сырный' , spice : 'Унаги' , image : 'image/Zapechenay_kaliforniy_s_Krevetkoi.jpg'},
+	{name:'Сяке Терияки', hat : 'Яки' , spice : 'Унаги' , image : 'image/Syke_Teriyki.jpg'},
+	{name:'Майами', hat : 'Яки' , spice : 'Манго Чили' , image : 'image/Maiami.jpg'},
+	{name:'Гриль Тунец', hat : 'Яки' , spice : 'Унаги' , image : 'image/Gril_Tunec.jpg'},
+	{name:'Дакота', hat : 'Яки' , spice : 'Унаги' , image : 'image/Dakota.jpg'},
+	{name:'Черная Мамба', hat : 'Спайси точки' , spice : 'ничем' , image : 'image/Chernay_mamba.jpg'},
+	{name:'Катана', hat : 'Лосось Спайси' , spice : 'Унаги' , image : 'image/Katana.jpg'},
+	{name:'Малибу', hat : 'Лосось Спайси' , spice : 'Манго Чили' , image : 'image/Malibu.jpg'},
+	{name:'Блэк Джэк', hat : 'Лосось Спайси' , spice : 'Манго Чили' , image : 'image/Black_jack.jpg'},
+	{name:'Запеченная Фила Лосось', hat : 'Яки Лосось' , spice : 'Унаги' , image : 'image/Zap_Fila_s_Lososem.jpg'},
+	{name:'Ронин', hat : 'Яки Лосось' , spice : 'Манго Чили' , image :  '#'},
+	{name:'Фудзи', hat : 'Спайси Угорь' , spice : 'Унаги  и кунжут' , image : 'image/Fudzi.jpg'},
+	{name:'Банзай', hat : 'Спайси Угорь' , spice : 'Унаги  и кунжут' , image : 'image/Banzai.jpg'},
+	{name:'Находка', hat : 'Мидиевый' , spice : 'Унаги  и кунжут' , image : 'image/Nahodka.jpg'},
+	{name:'Сегун', hat : 'Спайси Креветка' , spice : 'Манго Чили и супер лук' , image : 'image/Segun.jpg'},
+	{name:'Сяке Хот', hat : 'Спайси Сырный' , spice : 'ничем' , image : 'image/Syke_hot.jpg'},
+	{name:'Креветка Спайси', hat : 'Спайси Сырный' , spice : 'ничем' , image : 'image/Krevetka_spisi.jpg'},
+	{name:'Киото', hat : 'Спайси Краб' , spice : 'ничем' , image : 'image/Kioto.jpg'},
+	{name:'Краб Спайси', hat : 'Спайси Краб' , spice : 'ничем' , image : 'image/Krab_spisi.jpg'},
+	{name:'Блэк Стар', hat : 'Спайси Краб' , spice : 'ничем' , image : '#'},
+	{name:'Санрайз', hat : 'Манго Чили после запек' , spice : 'Манго Чили' , image : 'image/Sunrise.jpg'},
+	{name:'Окинава', hat : 'Яки Краб' , spice : 'Унаги  и кунжут' , image : "image/Okinava.jpg"},
+	{name:'Зап Фила с Краб', hat : 'Яки Краб' , spice : 'свит Чили' , image : 'image/Zap_Fila_s_Krabom.jpg'},
+	{name:'Чикен Хот', hat : 'Куринный Замес' , spice : 'свит Чили' , image : 'image/Chicken_Hot.jpg'}
 
-	let arrayName = ['ЗапечФила С Угрем','ЗапФила С мидиями','Цыпочка','Вулкан','Тунец Хот','Зап Калифорния','Цезарь Запеченый', 'ЗапКалиф с Крев',
-	'Зап Креветка','Сяке Терияки','Майами','Гриль Тунец','Дакота',
-	'Черная Мамба',
-	'Катана','Малибу','Блэк Джэк',
-	'Запеченная Фила Лосось','Ронин',
-	'Фудзи','Банзай',
-	'Находка','Сегун',
-	'Сяке Хот','Креветка Спайси',
-	 'Киото','Спайси Краб','Блэк Стар',
-	 'Санрайз',
-	 'Окинава','Зап Фила с Краб',
-	 'Чикен Хот'];
+	];
 
-
-
-	let arraySpice = ['Унаги кунжут', ' Унаги кунжут' , 'Унаги',
-		'Спайси перед запек', 'унаги и кр массага', 'ничем', 'пармезан', 'Унаги',
-		'Манго Чили','Унаги','ничем','унаги','унаги',
-	'точка Спайси',
-	'ничем','Манго Чили','Манго Чили',
-	'Унаги','Манго Чили',
-	'Унаги','унаги',
-	'Унаги','Манго Чили и супер лук',
-	'ничем','ничем',
-	 'ничем','ничем','ничем',
-	 'Манго Чили',
-	 'унаги кунжут','свит Чили',
-	 'свит Чили'];	
-
-
-
-
-
-	let arrayHat = ['Сырный','Сырный','Сырный','Сырный','Сырный','Сырный','Сырный','Сырный',
-	'Яки','Яки','Яки','Яки','Яки',
-	'Спайси',
-	'Лосось Спайси','Лосось Спайси','Лосось Спайси',
-	'Яки Лосось','Яки Лосось',
-	'Спайси Угорь','Спайси Угорь',
-	'Мидиевый','Спайси Креветка',
-	'Спайси Сырный','Спайси Сырный',
-	'Краб Спайси','Краб Спайси','Краб Спайси',
-	'Манго Чили после запек',
-	'Яки Краб','Яки Краб',
-	'Куринный Замес'];
 /////////////////////////////////////////////////////////конец темпурной базы///////////////////////
 
 ////////////////////////////////////////////////////////начало холодной базы /////////////////////////
@@ -244,118 +230,122 @@
 	'ТомагоЛайт','ничем','ничем'];
 
 //////////////////////////////////////////////////////////конец холодной базы //////////////////////////
+	//const name = document.querySelector('.name');
+	//const hat = document.querySelector('.hat');
+	//const spice = document.querySelector('.spice');
+
+	const name = document.getElementById('name');
+	const hat = document.getElementById('hat');
+	const spice = document.getElementById('spice');
+	const img = document.getElementById('img');
 
 
-	const name = document.querySelector('.name');
-	const hat = document.querySelector('.hat');
-	const spice = document.querySelector('.spice');
-
-
-	let count = 0;//счетчик для перебора в back and next
-	let flag;//флаг 1 очередь next , 0 очередь back
-
-	console.log(flag);
-	//if (count <0 ){count = arrayName.length -1};
-	//if (count >= arrayName.length){count = 0};
-// button SHOW
-	const button0 = document.querySelector('.button0');
-	button0.addEventListener('click',function(){
+	let count ;//счетчик для перебора в back and next
+	//let flag;//флаг 1 очередь next , 0 очередь back
+	console.log(count);
+	function init(){
+		console.log('init...');
+		return count === undefined? 1: 0;
+	}
+	function incrementCount(button){
 		
-		hat.textContent = arrayHat[arr[count]];
-		spice.textContent = arraySpice[arr[count]];
-		if (arr.length == 0){
-				if(flag == 1){
-				hat.textContent = arrayHat[count - 1];
-				spice.textContent = arraySpice[count - 1];
-				}else{
-				hat.textContent = arrayHat[count + 1];
-				spice.textContent = arraySpice[count + 1];
+		if ( init() ){
+		 console.log( "count ===0 ") ; count =0;
+		}else {
+			switch(button){
+				case "next":
+				if(count+1 >= arrayRollRazdacha.length){
+				count = 0;
+				}else{ count ++}
+				//return count;
+				console.log(button+' '+ count);
+				break;
 
-				}
-			}else{
-				if(flag == 1){
-				hat.textContent = arrayHat[arr[count -1]];
-				spice.textContent = arraySpice[arr[count -1]];
-				}else{
-				hat.textContent = arrayHat[arr[count +1]];
-				spice.textContent = arraySpice[arr[count +1]];
+				case "back":
+				if(count - 1 < 0){
+				count = arrayRollRazdacha.length -1;
+				}else{ count --};
+				//return count;
+				console.log(button +' '+count);
+				break;
 
-				}
+				case "show":
+				return count === undefined?folse : true;
 			}
+		}
+	}
+// button SHOW
+// button SHOW
+	// button SHOW
+	const button_show = document.getElementById('button_show');
+	button_show.addEventListener('click',function(){
 
-	})
+		if(incrementCount("show")){
+				if (arr.length === 0 && count !== undefined){
+				hat.textContent = arrayRollRazdacha[count].hat;
+				spice.textContent = arrayRollRazdacha[count].spice;
+				img.src = arrayRollRazdacha[count].image;
+				}else{
+				hat.textContent = arrayRollRazdacha[arr[count]].hat;
+				spice.textContent = arrayRollRazdacha[arr[count]].spice;
+				img.src = arrayRollRazdacha[arr[count]].image;
+			}
+		}else{
+			name.textContent='Нажми далее';
+		}
+})
 
 
 	
 //button  Back
-	let button1 = document.querySelector('.button1');
-	button1.addEventListener('click',function(){
-		//if (count < 0){ count = arrayName.length};
-		if(flag == undefined || flag == 1){
-			flag = 0;
-			count = count -2;
-		};
-			if (count <0 ){count = arrayName.length -1};
-			if (count >= arrayName.length){count = 0};
+	let button_back = document.getElementById('button_back');
+	button_back.addEventListener('click',function(){
 
-		name.textContent = arrayName[arr[count]];
-		hat.textContent = "?";
-		spice.textContent ='???';
+		incrementCount('back');
 		if (arr.length == 0){
-				name.textContent = arrayName[count];
+				name.textContent = arrayRollRazdacha[count].name;
 				hat.textContent = "?";
 				spice.textContent = "???";
-				
-			}
-		console.log(count);
-		count--;
+				}else{
+					name.textContent = arrayRollRazdacha[arr[count]].name;
+					hat.textContent = "?";
+					spice.textContent ='???';
+				}
 
 		
 	})
 
 // button NEXT
-	let button2 = document.querySelector('.button2');
-	button2.addEventListener('click', function(){
-		if(flag == undefined ){
-			flag = 1;
-		}
-		if(flag == 0){
-			flag = 1;
-			count = count +2;
-		}
-			if (count <0 ){count = arrayName.length -1};
-			if (count >= arrayName.length){count = 0};
-			
-		name.textContent = arrayName[arr[count]];
-		hat.textContent = "?";
-		spice.textContent = "???";
-		if (arr.length == 0){
-				name.textContent = arrayName[count];
+	let button_next = document.getElementById('button_next');
+	button_next.addEventListener('click', function(){
+
+		incrementCount("next");
+		console.log('next up , count = '+count);
+		if ( arr.length === 0){
+				name.textContent = arrayRollRazdacha[count].name;
 				hat.textContent = "?";
 				spice.textContent = "???";
-				
-			}
-
-		count++
-		//if (count >= arrayName.length){ count = 0};
+				}else{
+					name.textContent = arrayRollRazdacha[arr[count]].name;
+					hat.textContent = "?";
+					spice.textContent = "???";
+				}
 
 		
 
 
-	})
-	console.log(count)
+	});
 
-
+console.log(arr.length + 'arr.length');
 	// SHUFFLE @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 	
 
-	let buttonShuffle = document.querySelector('.buttonShuffle');
-	buttonShuffle.addEventListener('click',function(){
-		count=0;
-
+	let button_shuffle = document.getElementById('button_shuffle');
+	button_shuffle.addEventListener('click',function(){
+		count = undefined;
 	function createArr(){
-		for(i=0; i< arrayName.length;i++){
+		for(i=0; i<= arrayRollRazdacha.length;i++){
 			arr[i]=i;
 		}
 		console.log('arrCreate!')
@@ -387,7 +377,6 @@
 		shuffle(arr);
 		console.log(arr);
 	})
-
 
 </script>
 </html>
